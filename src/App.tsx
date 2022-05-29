@@ -1,14 +1,13 @@
 import { UserOutlined ,EditOutlined, DeleteOutlined} from '@ant-design/icons';
 import ProLayout, { PageContainer } from '@ant-design/pro-layout';
 import { Avatar } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { Card } from 'antd';
 import complexMenu from './Components/complexMenu';
 import { Modal } from 'antd';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Button, DatePicker, Space, Table } from 'antd';
-import console from 'console';
 const { RangePicker } = DatePicker;
 
 const valueEnum = {
@@ -141,35 +140,25 @@ const columns: ProColumns<TableListItem>[] = [
 //     </>
 //   );
 // };
-
 const App = ()  =>{
   const [data,setdata] = useState([]);
 
-  useEffect(()=>{
+
+  useEffect(() => {
     fetch("http://103.143.143.216:5000/api/work/all")
     .then(res => res.json())
     .then(
       (result) => {
+        
         setdata(result);
-        data.forEach(element => {
-         
-        });
+        console.log(data);
       },
       (error) => {
         console.log(error)
       }
-    )
-
-  },[])
-
-
+  )
+  },[]);
  
-  
-  
-
-
-
-
   return(
     <>
     <div
@@ -273,6 +262,7 @@ const App = ()  =>{
       headerTitle="Bảng công việc"
       toolBarRender={() => [<Button key="show">Đang cập nhật</Button>]}
     />
+      
       </Card>
         
       </ProLayout>
